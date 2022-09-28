@@ -1,0 +1,17 @@
+node_modules
+Frontend/angular.json
+MangaBackend/src/main/resources/static/
+MangaBackend/src/main/resources/static/main-es2015.js.map
+C:\Angular\Mangasite\Manga-Website\MangaBackend\src\main\resources\static
+Frontend/angular.json
+Frontend/angular.json
+target/**
+.project
+.classpath
+*.prefs
+*.class
+bin/**
+*.log
+.settings/application.properties
+props.env
+.factorypath

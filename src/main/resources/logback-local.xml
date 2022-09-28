@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<contextName>javalin-template</contextName>
+	<property name="blockingQueueSize" value="256" />
+
+	<!-- Start appenders -->
+	<!-- STDOUT appernder for local development -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNC_STDOUT" class="ch.qos.logback.classic.AsyncAppender">
+		<appender-ref ref="STDOUT" />
+	</appender>
+
+	<logger name="com.jojo.javalin.api" level="INFO" additivity="false">
+		<appender-ref ref="ASYNC_STDOUT" />
+	</logger>
+	<logger name="io.javalin" level="info" additivity="false">
+		<appender-ref ref="ASYNC_STDOUT" />
+	</logger>
+	<root level="info" additivity="false">
+		<appender-ref ref="ASYNC_STDOUT" />
+	</root>
+
+</configuration>

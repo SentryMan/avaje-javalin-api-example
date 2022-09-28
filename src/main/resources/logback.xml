@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	​
+	<contextName>javalin-template</contextName>
+
+	<!-- Start appenders -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<customFields>{"appName":"javalin-template", "profile":"${profile}"}</customFields>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNC_STDOUT" class="net.logstash.logback.appender.LoggingEventAsyncDisruptorAppender">
+		<appender-ref ref="STDOUT" />
+		<ringBufferSize>1000</ringBufferSize>
+	</appender>
+
+	<logger name="com.jojo.javalin.api" level="INFO" additivity="false">
+		<appender-ref ref="ASYNC_STDOUT" />
+	</logger>
+
+	<logger name="io.javalin" level="INFO" additivity="false">
+		<appender-ref ref="ASYNC_STDOUT" />
+	</logger>
+
+
+	<root level="INFO" additivity="false">
+		<appender-ref ref="ASYNC_STDOUT" />
+	</root>
+</configuration>
