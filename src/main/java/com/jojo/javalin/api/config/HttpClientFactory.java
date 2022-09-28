@@ -1,13 +1,15 @@
 package com.jojo.javalin.api.config;
 
+import java.net.http.HttpClient.Version;
+import java.time.Duration;
+import java.util.concurrent.Executors;
+
 import com.jojo.javalin.api.client.HTTPListeners;
+
 import io.avaje.config.Config;
 import io.avaje.http.client.HttpClientContext;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
-import java.net.http.HttpClient.Version;
-import java.time.Duration;
-import java.util.concurrent.Executors;
 
 @Factory
 public class HttpClientFactory {
@@ -18,7 +20,7 @@ public class HttpClientFactory {
       ) {
 
     return HttpClientContext.builder()
-        .baseUrl("https://localhost:6969")
+        .baseUrl(Config.get("base.url"))
         .executor(Executors.newVirtualThreadPerTaskExecutor())
         //     .authTokenProvider(provider)
         .requestTimeout(Duration.ofMillis(Config.getLong("timeout", 5000)))
