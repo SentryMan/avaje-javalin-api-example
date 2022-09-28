@@ -8,6 +8,7 @@ import io.avaje.http.api.Path;
 import io.avaje.http.api.Post;
 import io.avaje.http.api.Produces;
 import jakarta.inject.Inject;
+import java.util.Arrays;
 
 @Controller
 @Path("/javalin")
@@ -24,8 +25,7 @@ public class ControllerClass {
   @Produces("image/png")
   @Get("/get")
   String test() {
-    service.callDownStream();
-    return null;
+    return Arrays.toString(service.callDownStream());
   }
 
   @Post("/post")
