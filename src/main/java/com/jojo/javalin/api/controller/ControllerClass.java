@@ -24,6 +24,7 @@ public class ControllerClass {
   @Get("/get")
   @Produces("image/png")
   void test(Context ctx) {
+    System.out.println("Is Virtual Thread: " + Thread.currentThread().isVirtual());
     ctx.contentType("image/png").result(service.callDownStream());
   }
 
