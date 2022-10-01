@@ -18,7 +18,21 @@
 		<slf4j.version>2.0.2</slf4j.version>
 		<logback.version>1.4.1</logback.version>
 	</properties>
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-bom</artifactId>
+				<version>11.0.12</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -88,7 +102,7 @@
 			<version>${avaje.inject.version}</version>
 			<scope>test</scope>
 		</dependency>
-		 <dependency>
+		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-http-javalin-generator</artifactId>
 			<version>1.17</version>
