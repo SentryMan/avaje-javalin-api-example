@@ -1,6 +1,7 @@
 package com.jojo.javalin.api.controller;
 
 import com.jojo.javalin.api.service.ServiceClass;
+
 import io.avaje.http.api.Controller;
 import io.avaje.http.api.Get;
 import io.avaje.http.api.Path;
@@ -9,7 +10,7 @@ import io.javalin.http.Context;
 import jakarta.inject.Inject;
 
 @Controller
-@Path("/javalin")
+@Path("javalin")
 public class ControllerClass {
 
   private final ServiceClass service;
@@ -20,10 +21,10 @@ public class ControllerClass {
     this.service = service;
   }
 
-  @Produces("image/png")
   @Get("/get")
+  @Produces("image/png")
   void test(Context ctx) {
-    ctx.result(service.callDownStream());
+    ctx.contentType("image/png").result(service.callDownStream());
   }
 
   @Get("/health")
