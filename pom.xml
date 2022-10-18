@@ -15,6 +15,7 @@
 	<properties>
 		<java.version>19</java.version>
 		<avaje.inject.version>8.9</avaje.inject.version>
+		<avaje.http.version>1.18</avaje.http.version>
 		<slf4j.version>2.0.2</slf4j.version>
 		<logback.version>1.4.1</logback.version>
 	</properties>
@@ -75,7 +76,7 @@
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-http-api</artifactId>
-			<version>1.17</version>
+			<version>${avaje.http.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>
@@ -105,13 +106,13 @@
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-http-javalin-generator</artifactId>
-			<version>1.17</version>
+			<version>${avaje.http.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-http-client-generator</artifactId>
-			<version>1.17</version>
+			<version>${avaje.http.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -182,12 +183,12 @@
 						<path>
 							<groupId>io.avaje</groupId>
 							<artifactId>avaje-http-javalin-generator</artifactId>
-							<version>1.17</version>
+							<version>${avaje.http.version}</version>
 						</path>
 						<path>
 							<groupId>io.avaje</groupId>
 							<artifactId>avaje-http-client-generator</artifactId>
-							<version>1.17</version>
+							<version>${avaje.http.version}</version>
 						</path>
 						<path>
 							<groupId>org.projectlombok</groupId>
