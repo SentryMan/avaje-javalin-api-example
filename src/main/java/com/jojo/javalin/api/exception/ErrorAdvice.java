@@ -1,14 +1,16 @@
 package com.jojo.javalin.api.exception;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.jojo.javalin.api.config.ServerCustomizer;
+
 import io.avaje.http.api.InvalidPathArgumentException;
 import io.avaje.http.api.InvalidTypeArgumentException;
 import io.avaje.http.api.ValidationException;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import jakarta.inject.Singleton;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 @Singleton
 public class ErrorAdvice implements ServerCustomizer {
@@ -82,8 +84,6 @@ public class ErrorAdvice implements ServerCustomizer {
 
     ctx.status(400);
   }
-
-  public record RequestModel(String message) {}
 
   public record ResponseModel(String response) {}
 }

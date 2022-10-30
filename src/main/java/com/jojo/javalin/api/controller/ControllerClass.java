@@ -1,9 +1,13 @@
 package com.jojo.javalin.api.controller;
 
+import java.util.List;
+
 import com.jojo.javalin.api.service.ServiceClass;
+
 import io.avaje.http.api.Controller;
 import io.avaje.http.api.Get;
 import io.avaje.http.api.Path;
+import io.avaje.http.api.Post;
 import io.avaje.http.api.Produces;
 import io.javalin.http.Context;
 import jakarta.inject.Inject;
@@ -31,5 +35,17 @@ public class ControllerClass {
   String health() {
 
     return "healthlmao";
+  }
+
+  @Post("/post")
+  RequestModel testPost(RequestModel m) {
+
+    return new RequestModel("dfdf");
+  }
+
+  @Post("/post2")
+  RequestModel testPostl(List<RequestModel> m) {
+    System.out.println();
+    return new RequestModel("erer");
   }
 }

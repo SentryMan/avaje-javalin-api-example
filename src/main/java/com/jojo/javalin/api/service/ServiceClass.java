@@ -1,14 +1,15 @@
 package com.jojo.javalin.api.service;
 
+import java.net.http.HttpResponse;
+import java.util.Optional;
+
 import com.jojo.javalin.api.client.ApiClient;
 import com.jojo.javalin.api.exception.ApplicationException;
 import com.jojo.javalin.api.exception.ErrorEnum;
-import io.avaje.http.client.HttpClientContext;
+
 import io.avaje.http.client.HttpException;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import java.net.http.HttpResponse;
-import java.util.Optional;
 
 @Singleton
 public class ServiceClass {
@@ -18,8 +19,8 @@ public class ServiceClass {
   private final ApiClient api;
 
   @Inject
-  public ServiceClass(HttpClientContext ctx) {
-    api = ctx.create(ApiClient.class);
+  public ServiceClass(ApiClient api) {
+    this.api = api;
   }
 
   public byte[] callDownStream() {

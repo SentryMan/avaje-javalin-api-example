@@ -1,12 +1,13 @@
 package com.jojo.javalin.api.config;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.Instant;
+
 import io.avaje.config.Config;
 import io.avaje.http.client.AuthToken;
 import io.avaje.http.client.AuthTokenProvider;
 import io.avaje.http.client.HttpClientRequest;
-import java.time.Instant;
+import io.avaje.jsonb.Json;
+import io.avaje.jsonb.Json.Property;
 
 // @Singleton
 
@@ -36,9 +37,9 @@ public class AuthProvider implements AuthTokenProvider {
     return AuthToken.of(token.value(), validUntil);
   }
 
-  @JsonIgnoreProperties(ignoreUnknown = true)
+  @Json
   public record Oauth2Token(
-      @JsonProperty("expires_in") int expiresIn,
-      @JsonProperty("access_token") String value,
-      @JsonProperty("token_type") String tokenType) {}
+      @Property("expires_in") int expiresIn,
+      @Property("access_token") String value,
+      @Property("token_type") String tokenType) {}
 }

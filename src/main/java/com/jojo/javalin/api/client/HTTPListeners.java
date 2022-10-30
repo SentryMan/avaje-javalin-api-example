@@ -1,9 +1,9 @@
 package com.jojo.javalin.api.client;
 
-import io.avaje.config.Config;
-import io.avaje.http.client.RequestListener.Event;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
+
+import io.avaje.http.client.RequestListener.Event;
 
 public final class HTTPListeners {
 
@@ -12,36 +12,9 @@ public final class HTTPListeners {
 
   private static final String DELIMITER = "\n";
 
-  private static final int MAX_RETRIES = Config.getInt("retry.max", 2);
-
-  private static final int BACKOFF = Config.getInt("retry.backoff", 300);
-
   private static final String AUTHORIZATION = "Authorization";
 
   private HTTPListeners() {}
-
-  public static boolean retryHandler(int retryCount, HttpResponse<?> response) {
-
-    final var code = response.statusCode();
-
-    if (retryCount >= MAX_RETRIES || code >= 400 && code != 429) {
-
-      return false;
-    }
-
-    try {
-
-      Thread.sleep(BACKOFF);
-
-    } catch (final InterruptedException e) {
-
-      Thread.currentThread().interrupt();
-
-      return false;
-    }
-
-    return true;
-  }
 
   public static void logRequest(Event event) {
 

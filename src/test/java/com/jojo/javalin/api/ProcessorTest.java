@@ -36,7 +36,7 @@ class ProcessorTest {
   }
 
   @Test
-  public void runAnnoationProcessor() throws Exception {
+  void runAnnoationProcessor() throws Exception {
     final var source = Paths.get("src").toAbsolutePath().toString();
 
     final var files = getSourceFiles(source);
