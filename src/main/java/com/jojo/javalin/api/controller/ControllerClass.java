@@ -6,6 +6,7 @@ import com.jojo.javalin.api.service.ServiceClass;
 
 import io.avaje.http.api.Controller;
 import io.avaje.http.api.Get;
+import io.avaje.http.api.MediaType;
 import io.avaje.http.api.Path;
 import io.avaje.http.api.Post;
 import io.avaje.http.api.Produces;
@@ -25,13 +26,14 @@ public class ControllerClass {
   }
 
   @Get("/get")
-  @Produces("image/png")
+  @Produces(MediaType.IMAGE_PNG)
   void test(Context ctx) {
     System.out.println("Is Virtual Thread: " + Thread.currentThread().isVirtual());
     ctx.contentType("image/png").result(service.callDownStream());
   }
 
   @Get("/health")
+  @Produces(MediaType.TEXT_PLAIN)
   String health() {
 
     return "healthlmao";

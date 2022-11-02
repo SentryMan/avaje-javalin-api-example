@@ -20,7 +20,7 @@ class JavalinAPITest {
         server,
         (server, client) -> {
           final var response = client.get("/javalin/health");
-          Assertions.assertEquals(200, response.code());
+          Assertions.assertEquals("healthlmao", response.body().string());
         });
   }
 }
