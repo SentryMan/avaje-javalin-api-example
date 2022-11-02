@@ -1,19 +1,26 @@
 package com.jojo.javalin.api;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import io.avaje.inject.test.InjectTest;
 import io.javalin.Javalin;
+import io.javalin.testtools.JavalinTest;
 import jakarta.inject.Inject;
 
 @InjectTest
 class JavalinAPITest {
+
   @Inject Javalin server;
 
   @Test
   void test() {
-    assertNotNull(server);
+
+    JavalinTest.test(
+        server,
+        (server, client) -> {
+          final var response = client.get("/javalin/health");
+          Assertions.assertEquals(200, response.code());
+        });
   }
 }
