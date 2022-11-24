@@ -1,9 +1,8 @@
 package com.jojo.javalin.api.client;
 
+import io.avaje.http.client.RequestListener.Event;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
-
-import io.avaje.http.client.RequestListener.Event;
 
 public final class HTTPListeners {
 

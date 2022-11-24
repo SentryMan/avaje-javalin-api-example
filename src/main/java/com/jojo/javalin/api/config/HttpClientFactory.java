@@ -1,19 +1,17 @@
 package com.jojo.javalin.api.config;
 
-import java.net.http.HttpClient.Version;
-import java.time.Duration;
-import java.util.concurrent.Executors;
-
 import com.jojo.javalin.api.client.ApiClient;
 import com.jojo.javalin.api.client.HTTPListeners;
 import com.jojo.javalin.api.client.Retry;
-
 import io.avaje.config.Config;
 import io.avaje.http.client.HttpClientContext;
 import io.avaje.http.client.JsonbBodyAdapter;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import io.avaje.jsonb.Jsonb;
+import java.net.http.HttpClient.Version;
+import java.time.Duration;
+import java.util.concurrent.Executors;
 
 @Factory
 public class HttpClientFactory {

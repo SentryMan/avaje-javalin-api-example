@@ -1,11 +1,10 @@
 package com.jojo.javalin.api.client;
 
-import java.io.IOException;
-import java.net.http.HttpResponse;
-
 import io.avaje.config.Config;
 import io.avaje.http.client.HttpException;
 import io.avaje.http.client.RetryHandler;
+import java.io.IOException;
+import java.net.http.HttpResponse;
 
 public final class Retry implements RetryHandler {
   private static final int MAX_RETRIES = Config.getInt("retry.max", 2);

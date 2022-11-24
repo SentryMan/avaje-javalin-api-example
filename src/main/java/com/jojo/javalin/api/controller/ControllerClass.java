@@ -1,9 +1,6 @@
 package com.jojo.javalin.api.controller;
 
-import java.util.List;
-
 import com.jojo.javalin.api.service.ServiceClass;
-
 import io.avaje.http.api.Controller;
 import io.avaje.http.api.Get;
 import io.avaje.http.api.MediaType;
@@ -12,6 +9,7 @@ import io.avaje.http.api.Post;
 import io.avaje.http.api.Produces;
 import io.javalin.http.Context;
 import jakarta.inject.Inject;
+import java.util.List;
 
 @Controller
 @Path("javalin")

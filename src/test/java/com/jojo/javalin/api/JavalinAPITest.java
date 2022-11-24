@@ -1,12 +1,11 @@
 package com.jojo.javalin.api;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import io.avaje.inject.test.InjectTest;
 import io.javalin.Javalin;
 import io.javalin.testtools.JavalinTest;
 import jakarta.inject.Inject;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 @InjectTest
 class JavalinAPITest {

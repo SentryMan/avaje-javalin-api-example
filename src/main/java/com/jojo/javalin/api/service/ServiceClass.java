@@ -1,15 +1,13 @@
 package com.jojo.javalin.api.service;
 
-import java.net.http.HttpResponse;
-import java.util.Optional;
-
 import com.jojo.javalin.api.client.ApiClient;
 import com.jojo.javalin.api.exception.ApplicationException;
 import com.jojo.javalin.api.exception.ErrorEnum;
-
 import io.avaje.http.client.HttpException;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import java.net.http.HttpResponse;
+import java.util.Optional;
 
 @Singleton
 public class ServiceClass {

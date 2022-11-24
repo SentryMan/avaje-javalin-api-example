@@ -1,5 +1,8 @@
 package com.jojo.javalin.api;
 
+import io.avaje.http.generator.client.ClientProcessor;
+import io.avaje.http.generator.javalin.JavalinProcessor;
+import io.avaje.inject.generator.Processor;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,18 +13,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
-
 import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardLocation;
 import javax.tools.ToolProvider;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-
-import io.avaje.http.generator.client.ClientProcessor;
-import io.avaje.http.generator.javalin.JavalinProcessor;
-import io.avaje.inject.generator.Processor;
 
 class ProcessorTest {
 

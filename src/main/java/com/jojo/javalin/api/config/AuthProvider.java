@@ -1,13 +1,12 @@
 package com.jojo.javalin.api.config;
 
-import java.time.Instant;
-
 import io.avaje.config.Config;
 import io.avaje.http.client.AuthToken;
 import io.avaje.http.client.AuthTokenProvider;
 import io.avaje.http.client.HttpClientRequest;
 import io.avaje.jsonb.Json;
 import io.avaje.jsonb.Json.Property;
+import java.time.Instant;
 
 // @Singleton
 
