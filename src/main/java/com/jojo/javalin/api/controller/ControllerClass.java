@@ -24,13 +24,14 @@ public class ControllerClass {
   }
 
   @Get("/get")
-  @Produces(MediaType.IMAGE_PNG)
-  void test(Context ctx) {
+  // use regular Javalin Context
+  void ctxEndpoint(Context ctx) {
     System.out.println("Is Virtual Thread: " + Thread.currentThread().isVirtual());
     ctx.contentType("image/png").result(service.callDownStream());
   }
 
   @Get("/health")
+  // use produces to send only text
   @Produces(MediaType.TEXT_PLAIN)
   String health() {
 
@@ -39,13 +40,14 @@ public class ControllerClass {
 
   @Post("/post")
   RequestModel testPost(RequestModel m) {
-
-    return new RequestModel("dfdf");
+    System.out.println("got " + m);
+    return new RequestModel("Hmmm, now that I think about it");
   }
 
-  @Post("/post2")
+  @Post("/post1")
   RequestModel testPostl(List<RequestModel> m) {
-    System.out.println();
-    return new RequestModel("erer");
+
+    System.out.println("got " + m);
+    return new RequestModel("This Model class isn't named that well");
   }
 }
