@@ -1,16 +1,28 @@
 package com.jojo.javalin.api.controller;
 
+import java.util.List;
+
+import com.jojo.javalin.api.exception.ErrorResponse;
 import com.jojo.javalin.api.service.ServiceClass;
+
 import io.avaje.http.api.Controller;
 import io.avaje.http.api.Get;
 import io.avaje.http.api.MediaType;
+import io.avaje.http.api.OpenAPIReturns;
 import io.avaje.http.api.Path;
 import io.avaje.http.api.Post;
 import io.avaje.http.api.Produces;
 import io.javalin.http.Context;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
-import java.util.List;
 
+@OpenAPIDefinition(
+    info =
+        @Info(
+            title = "Example service",
+            description = "Example Javalin controllers with Java and Maven"))
 @Controller
 @Path("javalin")
 public class ControllerClass {
@@ -24,7 +36,11 @@ public class ControllerClass {
   }
 
   @Get("/get")
-  // use regular Javalin Context
+  @Tag(name = "sus",description = "very sus")
+  @OpenAPIReturns(
+      responseCode = "200",
+      description = "gets something a little sus",
+      type = byte[].class)
   void ctxEndpoint(Context ctx) {
     System.out.println("Is Virtual Thread: " + Thread.currentThread().isVirtual());
     ctx.contentType("image/png").result(service.callDownStream());
@@ -39,8 +55,15 @@ public class ControllerClass {
   }
 
   @Post("/post")
-  RequestModel testPost(RequestModel m) {
-    System.out.println("got " + m);
+  @OpenAPIReturns(responseCode = "200", description = "from annotaion")
+  @OpenAPIReturns(responseCode = "201")
+  @OpenAPIReturns(responseCode = "400", description = "User not found")
+  @OpenAPIReturns(
+      responseCode = "500",
+      description = "Some other Error",
+      type = ErrorResponse.class)
+  RequestModel testPost(RequestModel b) {
+    System.out.println("got " + b);
     return new RequestModel("Hmmm, now that I think about it");
   }
 
@@ -49,5 +72,11 @@ public class ControllerClass {
 
     System.out.println("got " + m);
     return new RequestModel("This Model class isn't named that well");
+  }
+
+  @Get("/list")
+  List<RequestModel> testOpenApiList() {
+
+    return List.of(new RequestModel("it is what it is I guess"));
   }
 }

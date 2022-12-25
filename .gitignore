@@ -15,7 +15,5 @@ bin/**
 .settings/application.properties
 props.env
 .factorypath
-openapi.json
 io.avaje.http.client.HttpApiProvider
 io.avaje.inject.spi.Module
-openapi.json
