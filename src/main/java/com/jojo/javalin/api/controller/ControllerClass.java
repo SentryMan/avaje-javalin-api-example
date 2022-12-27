@@ -35,9 +35,15 @@ public class ControllerClass {
     this.service = service;
   }
 
+  /**
+   * bog standard get
+   *
+   * @param b the body
+   * @return from javadoc
+   */
   @Get("/get")
-  @Tag(name = "sus",description = "very sus")
-  @OpenAPIReturns(
+  @Produces(MediaType.IMAGE_PNG)
+  @OpenAPIResponse(
       responseCode = "200",
       description = "gets something a little sus",
       type = byte[].class)
@@ -53,12 +59,19 @@ public class ControllerClass {
 
     return "healthlmao";
   }
-
+  /**
+   * Standard Post
+   *
+   * @param b the body
+   * @return the response body (from javadoc)
+   */
+  @Deprecated
   @Post("/post")
-  @OpenAPIReturns(responseCode = "200", description = "from annotaion")
-  @OpenAPIReturns(responseCode = "201")
-  @OpenAPIReturns(responseCode = "400", description = "User not found")
-  @OpenAPIReturns(
+  @Tag(name = "tag1", description = "it's somethin")
+  @OpenAPIResponse(responseCode = "200", description = "from annotaion")
+  @OpenAPIResponse(responseCode = "201")
+  @OpenAPIResponse(responseCode = "400", description = "User not found")
+  @OpenAPIResponse(
       responseCode = "500",
       description = "Some other Error",
       type = ErrorResponse.class)
