@@ -8,6 +8,6 @@ import java.net.http.HttpResponse;
 @Client
 public interface ApiClient {
 
-  @Get("/wp-content/uploads/2021/08/img08@2x-570x155.png")
+  @Get("/bcVQzeZ.png")
   HttpResponse<byte[]> call(@Header("Accept") String accept);
 }
