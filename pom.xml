@@ -10,27 +10,25 @@
 	<groupId>com.jojo.javalin.api</groupId>
 	<artifactId>avaje-javalin</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>avaje-javalin-template</name> 
+	<name>avaje-javalin-template</name>
 	<description>Demo project for Javalin</description>
 	<properties>
 		<java.version>19</java.version>
-		<avaje.inject.version>8.9</avaje.inject.version>
-		<avaje.http.version>1.20</avaje.http.version>
-		<avaje.jsonb.version>1.0</avaje.jsonb.version>
-		<javalin.version>5.2.0</javalin.version>
+		<avaje.inject.version>8.10</avaje.inject.version>
+		<avaje.http.version>1.21</avaje.http.version>
+		<avaje.jsonb.version>1.1</avaje.jsonb.version>
+		<javalin.version>5.3.1</javalin.version>
 	</properties>
-
 	<dependencies>
-
-
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>2.2.7</version>
+		</dependency>
 		<dependency>
 			<groupId>io.javalin</groupId>
 			<artifactId>javalin</artifactId>
 			<version>${javalin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
@@ -48,7 +46,6 @@
 			<artifactId>logback-core</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-jsonb</artifactId>
@@ -72,7 +69,7 @@
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-http-client</artifactId>
-			<version>1.20</version>
+			<version>1.21</version>
 		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>
@@ -86,65 +83,55 @@
 			<version>2.35.0</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>io.javalin</groupId>
 			<artifactId>javalin-testtools</artifactId>
 			<version>${javalin.version}</version>
 			<scope>test</scope>
 		</dependency>
-
+		<!-- Annotation processors -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-inject-generator</artifactId>
 			<version>${avaje.inject.version}</version>
-			<scope>test</scope>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.avaje</groupId>
+			<artifactId>avaje-jsonb-generator</artifactId>
+			<version>${avaje.jsonb.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-http-javalin-generator</artifactId>
 			<version>${avaje.http.version}</version>
-			<scope>test</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-http-client-generator</artifactId>
 			<version>${avaje.http.version}</version>
-			<scope>test</scope>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.errorprone</groupId>
+			<artifactId>error_prone_core</artifactId>
+			<version>2.15.0</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<argLine>@{argLine} --enable-preview</argLine>
-				</configuration>
-			</plugin> <!--plugintoseewhatjavamodulesweneedfortheJRE-->
-			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- format code-->
 			<plugin>
 				<groupId>com.spotify.fmt</groupId>
 				<artifactId>fmt-maven-plugin</artifactId>
@@ -157,6 +144,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Add Compiler args for loom and errorprone -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -166,40 +154,24 @@
 						<arg>-XDcompilePolicy=simple</arg>
 						<arg>-Xplugin:ErrorProne</arg>
 					</compilerArgs>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>com.google.errorprone</groupId>
-							<artifactId>error_prone_core</artifactId>
-							<version>2.15.0</version>
-						</path>
-						<path>
-							<groupId>io.avaje</groupId>
-							<artifactId>avaje-inject-generator</artifactId>
-							<version>${avaje.inject.version}</version>
-						</path>
-						<path>
-							<groupId>io.avaje</groupId>
-							<artifactId>avaje-http-javalin-generator</artifactId>
-							<version>${avaje.http.version}</version>
-						</path>
-						<path>
-							<groupId>io.avaje</groupId>
-							<artifactId>avaje-http-client-generator</artifactId>
-							<version>${avaje.http.version}</version>
-						</path>
-						<path>
-							<groupId>io.avaje</groupId>
-							<artifactId>avaje-jsonb-generator</artifactId>
-							<version>${avaje.jsonb.version}</version>
-						</path>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-							<version>1.18.24</version>
-						</path>
-					</annotationProcessorPaths>
 				</configuration>
-			</plugin> <!--Enforcecorrectloggingframework-->
+			</plugin>
+			<!-- Move openAPI to resources-->
+			<plugin>
+				<groupId>io.dinject</groupId>
+				<artifactId>openapi-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>main</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>openapi</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!--Enforce SLF4J logging-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
@@ -218,7 +190,7 @@
 								<banDuplicatePomDependencyVersions />
 								<bannedDependencies>
 									<excludes>
-										<!--slf4jshouldbeusedinstead-->
+										<!--slf4j should be used instead-->
 										<exclude>commons-logging:commons-logging</exclude>
 										<exclude>commons-logging:commons-logging-api</exclude>
 										<exclude>org.apache.logging.log4j:log4j-core</exclude>
@@ -254,6 +226,32 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.8</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>@{argLine} --enable-preview</argLine>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
