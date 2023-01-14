@@ -1,5 +1,6 @@
 package com.jojo.javalin.api.service;
 
+import com.jojo.javalin.api.aspect.Timed;
 import com.jojo.javalin.api.client.ApiClient;
 import com.jojo.javalin.api.exception.ApplicationException;
 import com.jojo.javalin.api.exception.ErrorEnum;
@@ -21,6 +22,7 @@ public class ServiceClass {
     this.api = api;
   }
 
+  @Timed
   public byte[] callDownStream() {
     try {
 
