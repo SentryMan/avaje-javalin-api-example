@@ -34,21 +34,19 @@ public class ControllerClass {
   }
 
   /**
-   * bog standard get
+   * bog standard get (This Javadoc is used to generate the OpenAPI)
    *
-   * @param b the body
    * @return gets something a little sus
    */
   @Get("/get")
   @Produces(MediaType.IMAGE_PNG)
   @OpenAPIResponse(responseCode = "200", type = byte[].class)
-  void ctxEndpoint(Context ctx) {
+  byte[] ctxEndpoint(Context ctx) {
     System.out.println("Is Virtual Thread: " + Thread.currentThread().isVirtual());
-    ctx.contentType("image/png").result(service.callDownStream());
+    return service.callDownStream();
   }
 
   @Get("/health")
-  // use produces to send only text
   @Produces(MediaType.TEXT_PLAIN)
   String health() {
 
@@ -59,33 +57,29 @@ public class ControllerClass {
    * Standard Post
    *
    * @param b the body
-   * @return the response body (from javadoc)
+   * @return the response body
    */
-  @Deprecated
   @Post("/post")
   @Tag(name = "tag1", description = "it's somethin")
-  @OpenAPIResponse(responseCode = "200", description = "from annotaion")
-  @OpenAPIResponse(responseCode = "201")
   @OpenAPIResponse(responseCode = "400", description = "User not found")
   @OpenAPIResponse(
       responseCode = "500",
       description = "Some other Error",
       type = ErrorResponse.class)
-  RequestModel testPost(RequestModel b) {
-    System.out.println("got " + b);
-    return new RequestModel("Hmmm, now that I think about it");
+  ResponseModel testPost(RequestModel b) {
+    return new ResponseModel("got " + b);
   }
 
   @Post("/post1")
-  RequestModel testPostl(List<RequestModel> m) {
+  ResponseModel testPostl(List<RequestModel> m) {
 
     System.out.println("got " + m);
-    return new RequestModel("This Model class isn't named that well");
+    return new ResponseModel("Got List of stuff");
   }
 
   @Get("/list")
-  List<RequestModel> testOpenApiList() {
+  List<ResponseModel> testOpenApiList() {
 
-    return List.of(new RequestModel("it is what it is I guess"));
+    return List.of(new ResponseModel("Can you really call this a list with only a single element"));
   }
 }

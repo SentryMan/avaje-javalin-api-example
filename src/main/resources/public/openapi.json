@@ -17,7 +17,7 @@
 				"tags" : [
 					
 				],
-				"summary" : "bog standard get",
+				"summary" : "bog standard get (This Javadoc is used to generate the OpenAPI)",
 				"description" : "",
 				"responses" : {
 					"200" : {
@@ -71,7 +71,7 @@
 							"application/json" : {
 								"schema" : {
 									"items" : {
-										"$ref" : "#/components/schemas/RequestModel"
+										"$ref" : "#/components/schemas/ResponseModel"
 									},
 									"type" : "array"
 								}
@@ -100,26 +100,6 @@
 					"required" : true
 				},
 				"responses" : {
-					"200" : {
-						"description" : "from annotaion",
-						"content" : {
-							"application/json" : {
-								"schema" : {
-									"$ref" : "#/components/schemas/RequestModel"
-								}
-							}
-						}
-					},
-					"201" : {
-						"description" : "the response body (from javadoc)",
-						"content" : {
-							"application/json" : {
-								"schema" : {
-									"$ref" : "#/components/schemas/RequestModel"
-								}
-							}
-						}
-					},
 					"400" : {
 						"description" : "User not found"
 					},
@@ -132,9 +112,18 @@
 								}
 							}
 						}
+					},
+					"201" : {
+						"description" : "the response body",
+						"content" : {
+							"application/json" : {
+								"schema" : {
+									"$ref" : "#/components/schemas/ResponseModel"
+								}
+							}
+						}
 					}
-				},
-				"deprecated" : true
+				}
 			}
 		},
 		"/javalin/post1" : {
@@ -163,7 +152,7 @@
 						"content" : {
 							"application/json" : {
 								"schema" : {
-									"$ref" : "#/components/schemas/RequestModel"
+									"$ref" : "#/components/schemas/ResponseModel"
 								}
 							}
 						}
@@ -189,6 +178,14 @@
 				"type" : "object",
 				"properties" : {
 					"value" : {
+						"type" : "string"
+					}
+				}
+			},
+			"ResponseModel" : {
+				"type" : "object",
+				"properties" : {
+					"response" : {
 						"type" : "string"
 					}
 				}
