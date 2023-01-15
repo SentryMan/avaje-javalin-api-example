@@ -1,6 +1,7 @@
 package com.jojo.javalin.api.exception;
 
 import com.jojo.javalin.api.config.ServerCustomizer;
+
 import io.avaje.jsonb.JsonType;
 import io.avaje.jsonb.Jsonb;
 import io.javalin.Javalin;
@@ -45,6 +46,4 @@ public class ErrorAdvice implements ServerCustomizer {
     errorType.toJson(
         new ErrorResponse(errorEnum.getId(), errorEnum.getText()), servletResponseStream);
   }
-
-  public record ResponseModel(String response) {}
 }
