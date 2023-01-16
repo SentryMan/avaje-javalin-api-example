@@ -4,7 +4,7 @@ import com.jojo.javalin.api.client.ApiClient;
 import com.jojo.javalin.api.client.HTTPListeners;
 import com.jojo.javalin.api.client.Retry;
 import io.avaje.config.Config;
-import io.avaje.http.client.HttpClientContext;
+import io.avaje.http.client.HttpClient;
 import io.avaje.http.client.JsonbBodyAdapter;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
@@ -21,7 +21,7 @@ public class HttpClientFactory {
       // AuthProvider provider,
       Jsonb jsonb) {
 
-    return HttpClientContext.builder()
+    return HttpClient.builder()
         .baseUrl(Config.get("base.url"))
         .executor(Executors.newVirtualThreadPerTaskExecutor())
         .bodyAdapter(new JsonbBodyAdapter(jsonb))

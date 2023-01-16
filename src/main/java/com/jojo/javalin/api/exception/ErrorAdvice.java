@@ -1,7 +1,6 @@
 package com.jojo.javalin.api.exception;
 
 import com.jojo.javalin.api.config.ServerCustomizer;
-
 import io.avaje.jsonb.JsonType;
 import io.avaje.jsonb.Jsonb;
 import io.javalin.Javalin;
