@@ -1,4 +1,4 @@
-package com.jojo.javalin.api.controller;
+package com.jojo.javalin.api.models;
 
 import io.avaje.jsonb.Json;
 

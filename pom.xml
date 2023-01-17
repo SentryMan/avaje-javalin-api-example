@@ -15,7 +15,7 @@
 	<properties>
 		<java.version>19</java.version>
 		<avaje.inject.version>8.11</avaje.inject.version>
-		<avaje.http.version>1.22</avaje.http.version>
+		<avaje.http.version>1.23-RC1</avaje.http.version>
 		<avaje.jsonb.version>1.1</avaje.jsonb.version>
 		<javalin.version>5.3.1</javalin.version>
 	</properties>
@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>io.avaje</groupId>
 			<artifactId>avaje-http-client</artifactId>
-			<version>1.22</version>
+			<version>${avaje.http.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>

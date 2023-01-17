@@ -57,6 +57,30 @@
 				}
 			}
 		},
+		"/javalin/list" : {
+			"get" : {
+				"tags" : [
+					
+				],
+				"summary" : "",
+				"description" : "",
+				"responses" : {
+					"200" : {
+						"description" : "",
+						"content" : {
+							"application/json" : {
+								"schema" : {
+									"items" : {
+										"$ref" : "#/components/schemas/ResponseModel"
+									},
+									"type" : "array"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/javalin/post" : {
 			"post" : {
 				"tags" : [
@@ -117,37 +141,6 @@
 									"$ref" : "#/components/schemas/RequestModel"
 								},
 								"type" : "array"
-							}
-						}
-					},
-					"required" : true
-				},
-				"responses" : {
-					"201" : {
-						"description" : "",
-						"content" : {
-							"application/json" : {
-								"schema" : {
-									"$ref" : "#/components/schemas/ResponseModel"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/javalin/valid" : {
-			"post" : {
-				"tags" : [
-					
-				],
-				"summary" : "",
-				"description" : "",
-				"requestBody" : {
-					"content" : {
-						"application/json" : {
-							"schema" : {
-								"$ref" : "#/components/schemas/RequestModel"
 							}
 						}
 					},

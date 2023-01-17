@@ -1,12 +1,13 @@
 package com.jojo.javalin.api.controller;
 
 import com.jojo.javalin.api.exception.ErrorResponse;
+import com.jojo.javalin.api.models.RequestModel;
+import com.jojo.javalin.api.models.ResponseModel;
 import com.jojo.javalin.api.service.ServiceClass;
 import io.avaje.http.api.Controller;
 import io.avaje.http.api.Get;
 import io.avaje.http.api.MediaType;
 import io.avaje.http.api.OpenAPIResponse;
-import io.avaje.http.api.Path;
 import io.avaje.http.api.Post;
 import io.avaje.http.api.Produces;
 import io.javalin.http.Context;
@@ -21,8 +22,7 @@ import java.util.List;
         @Info(
             title = "Example service",
             description = "Example Javalin controllers with Java and Maven"))
-@Controller
-@Path("javalin")
+@Controller("javalin")
 public class ControllerClass {
 
   private final ServiceClass service;
@@ -44,13 +44,6 @@ public class ControllerClass {
   byte[] ctxEndpoint(Context ctx) {
     System.out.println("Is Virtual Thread: " + Thread.currentThread().isVirtual());
     return service.callDownStream();
-  }
-
-  @Get("/health")
-  @Produces(MediaType.TEXT_PLAIN)
-  String health() {
-
-    return "healthlmao";
   }
 
   /**
