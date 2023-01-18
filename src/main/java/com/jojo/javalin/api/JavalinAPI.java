@@ -1,9 +1,12 @@
 package com.jojo.javalin.api;
 
 import io.avaje.config.Config;
+import io.avaje.http.api.Validator;
 import io.avaje.inject.BeanScope;
+import io.avaje.inject.InjectModule;
 import io.javalin.Javalin;
 
+@InjectModule(requires = Validator.class)
 public class JavalinAPI {
 
   private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(JavalinAPI.class);

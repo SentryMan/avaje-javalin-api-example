@@ -100,8 +100,8 @@
 					"required" : true
 				},
 				"responses" : {
-					"400" : {
-						"description" : "User not found"
+					"422" : {
+						"description" : "Failed Validation"
 					},
 					"500" : {
 						"description" : "Some other Error",
@@ -118,7 +118,7 @@
 						"content" : {
 							"application/json" : {
 								"schema" : {
-									"$ref" : "#/components/schemas/ResponseModel"
+									"$ref" : "#/components/schemas/Valid ResponseModel"
 								}
 							}
 						}
@@ -183,6 +183,14 @@
 				}
 			},
 			"ResponseModel" : {
+				"type" : "object",
+				"properties" : {
+					"response" : {
+						"type" : "string"
+					}
+				}
+			},
+			"Valid ResponseModel" : {
 				"type" : "object",
 				"properties" : {
 					"response" : {

@@ -1,11 +1,14 @@
 package com.jojo.javalin.api.exception;
 
 import com.jojo.javalin.api.config.ServerCustomizer;
+import io.avaje.http.api.ValidationException;
 import io.avaje.jsonb.JsonType;
 import io.avaje.jsonb.Jsonb;
 import io.javalin.Javalin;
+import io.javalin.http.ContentType;
 import io.javalin.http.Context;
 import jakarta.inject.Singleton;
+import jakarta.servlet.ServletOutputStream;
 
 @Singleton
 public class ErrorAdvice implements ServerCustomizer {
@@ -26,23 +29,38 @@ public class ErrorAdvice implements ServerCustomizer {
 
     switch (exception) {
       case final ApplicationException e -> handle(e, ctx);
+      case final ValidationException e -> handle(e, ctx);
 
       default -> {
         final var errorEnum = ErrorEnum.INTERNAL_ERROR;
         log.error("Unhandled Exception: {}", exception);
-        final var servletResponseStream = ctx.status(errorEnum.getStatus()).outputStream();
         errorType.toJson(
-            new ErrorResponse(errorEnum.getId(), errorEnum.getText()), servletResponseStream);
+            new ErrorResponse(errorEnum.getId(), errorEnum.getText()),
+            getServletStream(errorEnum.getStatus(), ctx));
       }
     }
+  }
+
+  void handle(ValidationException exception, Context ctx) {
+
+    final var servletResponseStream = getServletStream(exception.getStatus(), ctx);
+
+    errorType.toJson(
+        new ErrorResponse(
+            ErrorEnum.VALIDATION_FAIL.getId(), exception.getErrors().entrySet().toString()),
+        getServletStream(exception.getStatus(), ctx));
   }
 
   void handle(ApplicationException exception, Context ctx) {
 
     final var errorEnum = exception.getErrorEnum();
 
-    final var servletResponseStream = ctx.status(errorEnum.getStatus()).outputStream();
     errorType.toJson(
-        new ErrorResponse(errorEnum.getId(), errorEnum.getText()), servletResponseStream);
+        new ErrorResponse(errorEnum.getId(), errorEnum.getText()),
+        getServletStream(errorEnum.getStatus(), ctx));
+  }
+
+  ServletOutputStream getServletStream(int status, Context ctx) {
+    return ctx.status(status).contentType(ContentType.APPLICATION_JSON).outputStream();
   }
 }

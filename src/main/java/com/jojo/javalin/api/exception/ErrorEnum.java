@@ -4,11 +4,7 @@ public enum ErrorEnum {
 
   // TODO add more error scenarios
 
-  INVALID_CHANNEL_TYPE("40001", "Invalid Header", 400),
-
-  INVALID_PATH_VARIABLE("40002", "Invalid variable from path variable", 400),
-
-  INVALID_QUERY_PARAM("40003", "Invalid param from query", 400),
+  VALIDATION_FAIL("40001", "Invalid Body", 422),
 
   ERROR_4XX("40005", "4xx from backend", 400),
 
