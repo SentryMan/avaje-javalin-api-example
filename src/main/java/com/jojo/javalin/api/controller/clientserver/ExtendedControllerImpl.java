@@ -1,4 +1,4 @@
-package com.jojo.javalin.api.controller;
+package com.jojo.javalin.api.controller.clientserver;
 
 import io.avaje.http.api.Controller;
 

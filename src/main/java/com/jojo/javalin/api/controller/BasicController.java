@@ -24,12 +24,12 @@ import java.util.List;
             title = "Example service",
             description = "Example Javalin controllers with Java and Maven"))
 @Controller("javalin")
-public class ControllerClass {
+public class BasicController {
 
   private final ServiceClass service;
 
   @Inject
-  public ControllerClass(ServiceClass service) {
+  public BasicController(ServiceClass service) {
 
     this.service = service;
   }

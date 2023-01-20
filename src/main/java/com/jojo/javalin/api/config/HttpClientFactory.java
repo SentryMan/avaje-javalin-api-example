@@ -5,6 +5,7 @@ import com.jojo.javalin.api.client.HTTPListeners;
 import com.jojo.javalin.api.client.Retry;
 import io.avaje.config.Config;
 import io.avaje.http.client.HttpClient;
+import io.avaje.http.client.HttpClient.Builder;
 import io.avaje.http.client.JsonbBodyAdapter;
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
@@ -17,12 +18,11 @@ import java.util.concurrent.Executors;
 public class HttpClientFactory {
 
   @Bean
-  ApiClient client(
+  Builder builder(
       // AuthProvider provider,
       Jsonb jsonb) {
 
     return HttpClient.builder()
-        .baseUrl(Config.get("base.url"))
         .executor(Executors.newVirtualThreadPerTaskExecutor())
         .bodyAdapter(new JsonbBodyAdapter(jsonb))
         //     .authTokenProvider(provider)
@@ -31,8 +31,12 @@ public class HttpClientFactory {
         .version(Version.HTTP_1_1)
         // disable native requestlogging in favor of custom one
         .requestLogging(false)
-        .requestListener(HTTPListeners::logRequest)
-        .build()
-        .create(ApiClient.class);
+        .requestListener(HTTPListeners::logRequest);
+  }
+
+  @Bean
+  ApiClient client(Builder b) {
+
+    return b.baseUrl(Config.get("base.url")).build().create(ApiClient.class);
   }
 }

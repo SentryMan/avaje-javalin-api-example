@@ -12,6 +12,48 @@
 		}
 	],
 	"paths" : {
+		"/differentPath/jerma" : {
+			"get" : {
+				"tags" : [
+					
+				],
+				"summary" : "Standard Get 2: Electric Boogaloo",
+				"description" : "",
+				"responses" : {
+					"200" : {
+						"description" : "a classic reference",
+						"content" : {
+							"text/plain" : {
+								"schema" : {
+									"type" : "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/differentPath/snake" : {
+			"get" : {
+				"tags" : [
+					
+				],
+				"summary" : "Standard Get",
+				"description" : "",
+				"responses" : {
+					"200" : {
+						"description" : "a classic reference",
+						"content" : {
+							"text/plain" : {
+								"schema" : {
+									"type" : "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
 		"/javalin/get" : {
 			"get" : {
 				"tags" : [
@@ -41,11 +83,11 @@
 				"tags" : [
 					
 				],
-				"summary" : "",
+				"summary" : "Standard Health Check",
 				"description" : "",
 				"responses" : {
 					"200" : {
-						"description" : "",
+						"description" : "a health check",
 						"content" : {
 							"text/plain" : {
 								"schema" : {
@@ -118,7 +160,7 @@
 						"content" : {
 							"application/json" : {
 								"schema" : {
-									"$ref" : "#/components/schemas/Valid ResponseModel"
+									"$ref" : "#/components/schemas/ResponseModel"
 								}
 							}
 						}
@@ -159,6 +201,48 @@
 					}
 				}
 			}
+		},
+		"/pathymcpathface/jerma" : {
+			"get" : {
+				"tags" : [
+					
+				],
+				"summary" : "Standard Get 2: Electric Boogaloo",
+				"description" : "",
+				"responses" : {
+					"200" : {
+						"description" : "a classic reference",
+						"content" : {
+							"text/plain" : {
+								"schema" : {
+									"type" : "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/pathymcpathface/snake" : {
+			"get" : {
+				"tags" : [
+					
+				],
+				"summary" : "Standard Get",
+				"description" : "",
+				"responses" : {
+					"200" : {
+						"description" : "a classic reference",
+						"content" : {
+							"text/plain" : {
+								"schema" : {
+									"type" : "string"
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	},
 	"components" : {
@@ -183,14 +267,6 @@
 				}
 			},
 			"ResponseModel" : {
-				"type" : "object",
-				"properties" : {
-					"response" : {
-						"type" : "string"
-					}
-				}
-			},
-			"Valid ResponseModel" : {
 				"type" : "object",
 				"properties" : {
 					"response" : {
