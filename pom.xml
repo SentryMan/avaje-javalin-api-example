@@ -14,9 +14,9 @@
 	<description>Demo project for Javalin</description>
 	<properties>
 		<java.version>19</java.version>
-		<avaje.inject.version>8.12-RC3</avaje.inject.version>
-		<avaje.jsonb.version>1.2-RC2</avaje.jsonb.version>
-		<avaje.http.version>1.25</avaje.http.version>
+		<avaje.inject.version>8.12</avaje.inject.version>
+		<avaje.jsonb.version>1.2</avaje.jsonb.version>
+		<avaje.http.version>1.27</avaje.http.version>
 		<javalin.version>5.3.2</javalin.version>
 	</properties>
 	<dependencies>
