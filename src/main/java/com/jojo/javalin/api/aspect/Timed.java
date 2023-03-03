@@ -1,12 +1,13 @@
 package com.jojo.javalin.api.aspect;
 
-import io.avaje.inject.aop.Aspect;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Aspect(target = TimedAspect.class, ordering = 2000)
+import io.avaje.inject.aop.Aspect;
+
+@Aspect(ordering = 2000)
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Timed {}
