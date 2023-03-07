@@ -77,4 +77,15 @@ public class BasicController {
 
     return List.of(new ResponseModel("Can you really call this a list with only a single element"));
   }
+
+  /**
+   * Standard Health Check
+   *
+   * @return a health check
+   */
+  @Get("/health")
+  @Produces(MediaType.TEXT_PLAIN)
+  public String health() {
+    return "healthlmao";
+  }
 }

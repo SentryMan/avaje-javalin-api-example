@@ -8,7 +8,6 @@ import java.util.List;
 
 @Factory
 public class ServerFactory {
-
   @Bean
   Javalin server(List<WebRoutes> routes, List<ServerCustomizer> customizers) {
 
