@@ -1,15 +1,198 @@
 {
 	"openapi" : "3.0.1",
 	"info" : {
-		"title" : "",
+		"title" : "Example service",
+		"description" : "Example Javalin controllers with Java and Maven",
 		"version" : ""
 	},
+	"tags" : [
+		{
+			"name" : "tag1",
+			"description" : "it's somethin"
+		}
+	],
 	"paths" : {
-		
+		"/javalin/get" : {
+			"get" : {
+				"tags" : [
+					
+				],
+				"summary" : "bog standard get (This Javadoc is used to generate the OpenAPI)",
+				"description" : "",
+				"responses" : {
+					"200" : {
+						"description" : "gets something a little sus",
+						"content" : {
+							"image/png" : {
+								"schema" : {
+									"type" : "array",
+									"items" : {
+										"$ref" : "#/components/schemas/byte"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/javalin/health" : {
+			"get" : {
+				"tags" : [
+					
+				],
+				"summary" : "Standard Health Check",
+				"description" : "",
+				"responses" : {
+					"200" : {
+						"description" : "a health check",
+						"content" : {
+							"text/plain" : {
+								"schema" : {
+									"type" : "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/javalin/list" : {
+			"get" : {
+				"tags" : [
+					
+				],
+				"summary" : "",
+				"description" : "",
+				"responses" : {
+					"200" : {
+						"description" : "",
+						"content" : {
+							"application/json" : {
+								"schema" : {
+									"type" : "array",
+									"items" : {
+										"$ref" : "#/components/schemas/ResponseModel"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/javalin/post" : {
+			"post" : {
+				"tags" : [
+					"tag1"
+				],
+				"summary" : "Standard Post",
+				"description" : "",
+				"requestBody" : {
+					"description" : "the body",
+					"content" : {
+						"application/json" : {
+							"schema" : {
+								"$ref" : "#/components/schemas/RequestModel"
+							}
+						}
+					},
+					"required" : true
+				},
+				"responses" : {
+					"422" : {
+						"description" : "Failed Validation"
+					},
+					"500" : {
+						"description" : "Some other Error",
+						"content" : {
+							"application/json" : {
+								"schema" : {
+									"$ref" : "#/components/schemas/ErrorResponse"
+								}
+							}
+						}
+					},
+					"201" : {
+						"description" : "the response body",
+						"content" : {
+							"application/json" : {
+								"schema" : {
+									"$ref" : "#/components/schemas/ResponseModel"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/javalin/post1" : {
+			"post" : {
+				"tags" : [
+					
+				],
+				"summary" : "",
+				"description" : "",
+				"requestBody" : {
+					"content" : {
+						"application/json" : {
+							"schema" : {
+								"type" : "array",
+								"items" : {
+									"$ref" : "#/components/schemas/RequestModel"
+								}
+							}
+						}
+					},
+					"required" : true
+				},
+				"responses" : {
+					"201" : {
+						"description" : "",
+						"content" : {
+							"application/json" : {
+								"schema" : {
+									"$ref" : "#/components/schemas/ResponseModel"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	},
 	"components" : {
 		"schemas" : {
-			
+			"ErrorResponse" : {
+				"type" : "object",
+				"properties" : {
+					"id" : {
+						"type" : "string"
+					},
+					"text" : {
+						"type" : "string"
+					}
+				}
+			},
+			"RequestModel" : {
+				"type" : "object",
+				"properties" : {
+					"value" : {
+						"type" : "string"
+					}
+				}
+			},
+			"ResponseModel" : {
+				"type" : "object",
+				"properties" : {
+					"response" : {
+						"type" : "string"
+					}
+				}
+			},
+			"byte" : {
+				"type" : "object"
+			}
 		}
 	}
 }
