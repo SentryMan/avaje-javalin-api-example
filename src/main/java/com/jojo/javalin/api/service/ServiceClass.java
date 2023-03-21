@@ -7,7 +7,7 @@ import com.jojo.javalin.api.exception.ErrorEnum;
 import io.avaje.http.client.HttpException;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-import java.io.InputStream;
+import java.net.http.HttpResponse;
 import java.util.Optional;
 
 @Singleton
@@ -23,12 +23,17 @@ public class ServiceClass {
   }
 
   @Timed
-  public InputStream callDownStream() {
+  public byte[] callDownStream() {
     try {
 
       return api.call("image/png").body();
     } catch (final HttpException e) {
-      final var body = Optional.ofNullable(e.bodyAsString()).orElseGet(e::toString);
+      final var body =
+          Optional.ofNullable(e.httpResponse())
+              .map(HttpResponse::body)
+              .map(byte[].class::cast)
+              .map(String::new)
+              .orElseGet(e::toString);
       log.info("Failed call because: " + body);
       throw new ApplicationException(ErrorEnum.INTERNAL_ERROR, e);
     }
