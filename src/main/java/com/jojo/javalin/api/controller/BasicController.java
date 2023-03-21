@@ -1,8 +1,5 @@
 package com.jojo.javalin.api.controller;
 
-import com.jojo.javalin.api.exception.ErrorResponse;
-import com.jojo.javalin.api.models.RequestModel;
-import com.jojo.javalin.api.models.ResponseModel;
 import com.jojo.javalin.api.service.ServiceClass;
 import io.avaje.http.api.Controller;
 import io.avaje.http.api.Get;
@@ -16,6 +13,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
+import java.io.InputStream;
 import java.util.List;
 
 @OpenAPIDefinition(
@@ -42,8 +40,7 @@ public class BasicController {
   @Get("/get")
   @Produces(MediaType.IMAGE_PNG)
   @OpenAPIResponse(responseCode = "200", type = byte[].class)
-  byte[] ctxEndpoint(Context ctx) {
-    System.out.println("Is Virtual Thread: " + Thread.currentThread().isVirtual());
+  InputStream ctxEndpoint(Context ctx) {
     return service.callDownStream();
   }
 
