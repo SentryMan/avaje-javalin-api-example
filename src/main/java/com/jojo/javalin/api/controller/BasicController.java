@@ -15,7 +15,6 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
-import jakarta.validation.Valid;
 import java.util.List;
 
 @OpenAPIDefinition(
@@ -53,7 +52,6 @@ public class BasicController {
    * @param b the body
    * @return the response body
    */
-  @Valid
   @Post("/post")
   @Tag(name = "tag1", description = "it's somethin")
   @OpenAPIResponse(responseCode = "422", description = "Failed Validation")
@@ -61,7 +59,7 @@ public class BasicController {
       responseCode = "500",
       description = "Some other Error",
       type = ErrorResponse.class)
-  ResponseModel testPost(@Valid RequestModel b) {
+  ResponseModel testPost(RequestModel b) {
     return new ResponseModel("got " + b);
   }
 
