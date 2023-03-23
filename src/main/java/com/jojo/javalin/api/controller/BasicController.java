@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
+import java.io.InputStream;
 import java.util.List;
 
 @OpenAPIDefinition(
@@ -41,8 +42,7 @@ public class BasicController {
   @Get("/get")
   @Produces(MediaType.IMAGE_PNG)
   @OpenAPIResponse(responseCode = "200", type = byte[].class)
-  byte[] ctxEndpoint(Context ctx) {
-    System.out.println("Is Virtual Thread: " + Thread.currentThread().isVirtual());
+  InputStream ctxEndpoint(Context ctx) {
     return service.callDownStream();
   }
 
