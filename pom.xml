@@ -125,10 +125,6 @@
 	</dependencies>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 			<!-- format code-->
 			<plugin>
 				<groupId>com.spotify.fmt</groupId>
@@ -154,20 +150,6 @@
 					</compilerArgs>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>io.avaje</groupId>
-				<artifactId>avaje-inject-maven-plugin</artifactId>
-				<version>1.0</version>
-				<executions>
-					<execution>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>provides</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- Move openAPI to resources-->
 			<plugin>
 				<groupId>io.avaje</groupId>
@@ -179,32 +161,6 @@
 						<phase>process-classes</phase>
 						<goals>
 							<goal>openapi</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!--Enforce
-			SLF4J logging-->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<dependencies>
-					<dependency>
-						<groupId>de.skuzzle.enforcer</groupId>
-						<artifactId>restrict-imports-enforcer-rule</artifactId>
-						<version>2.0.0</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<id>enforce</id>
-						<configuration>
-							<rules>
-								<banDuplicatePomDependencyVersions />
-							</rules>
-						</configuration>
-						<goals>
-							<goal>enforce</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -227,13 +183,39 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin> 
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<argLine>@{argLine} --enable-preview</argLine>
 				</configuration>
+			</plugin>
+
+			<!-- Create the Runnable Jar with dependencies -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers combine.self="override">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.jojo.javalin.api.JavalinAPI</mainClass>
+								</transformer>
+							</transformers>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+							<keepDependenciesWithProvidedScope>false</keepDependenciesWithProvidedScope>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
