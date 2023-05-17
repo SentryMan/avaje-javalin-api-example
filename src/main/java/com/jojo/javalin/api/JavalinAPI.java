@@ -11,6 +11,7 @@ public class JavalinAPI {
   public static void main(String[] args) {
 
     try {
+
       BeanScope.builder().build().get(Javalin.class).start(Config.getInt("server.port", 8080));
 
     } catch (final Exception e) {

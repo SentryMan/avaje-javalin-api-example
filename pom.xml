@@ -15,11 +15,11 @@
 	<description>Demo project for Javalin</description>
 	<properties>
 		<java.version>20</java.version>
-		<avaje.inject.version>9.0</avaje.inject.version>
-		<avaje.jsonb.version>1.4</avaje.jsonb.version>
+		<avaje.inject.version>9.1</avaje.inject.version>
+		<avaje.jsonb.version>1.5</avaje.jsonb.version>
 		<avaje.config.version>3.1</avaje.config.version>
-		<avaje.http.version>1.34</avaje.http.version>
-		<javalin.version>5.4.2</javalin.version>
+		<avaje.http.version>1.39</avaje.http.version>
+		<javalin.version>5.5.0</javalin.version>
 	</properties>
 	<dependencies>
 		<dependency>

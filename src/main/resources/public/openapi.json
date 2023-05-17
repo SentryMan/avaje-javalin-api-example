@@ -25,10 +25,8 @@
 						"content" : {
 							"image/png" : {
 								"schema" : {
-									"type" : "array",
-									"items" : {
-										"$ref" : "#/components/schemas/byte"
-									}
+									"type" : "string",
+									"format" : "byte"
 								}
 							}
 						}
@@ -174,9 +172,6 @@
 					}
 				}
 			},
-			"InputStream" : {
-				"type" : "object"
-			},
 			"RequestModel" : {
 				"type" : "object",
 				"properties" : {
@@ -192,9 +187,6 @@
 						"type" : "string"
 					}
 				}
-			},
-			"byte" : {
-				"type" : "object"
 			}
 		}
 	}
