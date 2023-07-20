@@ -21,7 +21,7 @@
 				"description" : "",
 				"responses" : {
 					"200" : {
-						"description" : "gets something a little sus",
+						"description" : "gets something a little sus",
 						"content" : {
 							"image/png" : {
 								"schema" : {
@@ -43,7 +43,7 @@
 				"description" : "",
 				"responses" : {
 					"200" : {
-						"description" : "a health check",
+						"description" : "a health check",
 						"content" : {
 							"text/plain" : {
 								"schema" : {
@@ -112,7 +112,7 @@
 						}
 					},
 					"201" : {
-						"description" : "the response body",
+						"description" : "the response body",
 						"content" : {
 							"application/json" : {
 								"schema" : {
