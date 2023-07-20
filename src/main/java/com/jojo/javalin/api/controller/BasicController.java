@@ -40,6 +40,7 @@ public class BasicController {
    * @return gets something a little sus
    */
   @Get("/get")
+  @Produces(MediaType.IMAGE_PNG)
   @OpenAPIResponse(responseCode = "200", type = byte[].class)
   InputStream ctxEndpoint(Context ctx) {
     return service.callDownStream();
