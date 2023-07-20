@@ -15,18 +15,17 @@
 		"/javalin/get" : {
 			"get" : {
 				"tags" : [
-					
+					"tag1"
 				],
-				"summary" : "bog standard get (This Javadoc is used to generate the OpenAPI)",
+				"summary" : "Standard Post Showing the Broken Compression",
 				"description" : "",
 				"responses" : {
 					"200" : {
-						"description" : "gets something a little sus",
+						"description" : "the response body",
 						"content" : {
-							"image/png" : {
+							"application/json" : {
 								"schema" : {
-									"type" : "string",
-									"format" : "byte"
+									"$ref" : "#/components/schemas/ServerPingResponse"
 								}
 							}
 						}
@@ -43,7 +42,7 @@
 				"description" : "",
 				"responses" : {
 					"200" : {
-						"description" : "a health check",
+						"description" : "a health check",
 						"content" : {
 							"text/plain" : {
 								"schema" : {
@@ -78,112 +77,32 @@
 					}
 				}
 			}
-		},
-		"/javalin/post" : {
-			"post" : {
-				"tags" : [
-					"tag1"
-				],
-				"summary" : "Standard Post",
-				"description" : "",
-				"requestBody" : {
-					"description" : "the body",
-					"content" : {
-						"application/json" : {
-							"schema" : {
-								"$ref" : "#/components/schemas/RequestModel"
-							}
-						}
-					},
-					"required" : true
-				},
-				"responses" : {
-					"422" : {
-						"description" : "Failed Validation"
-					},
-					"500" : {
-						"description" : "Some other Error",
-						"content" : {
-							"application/json" : {
-								"schema" : {
-									"$ref" : "#/components/schemas/ErrorResponse"
-								}
-							}
-						}
-					},
-					"201" : {
-						"description" : "the response body",
-						"content" : {
-							"application/json" : {
-								"schema" : {
-									"$ref" : "#/components/schemas/ResponseModel"
-								}
-							}
-						}
-					}
-				}
-			}
-		},
-		"/javalin/post1" : {
-			"post" : {
-				"tags" : [
-					
-				],
-				"summary" : "",
-				"description" : "",
-				"requestBody" : {
-					"content" : {
-						"application/json" : {
-							"schema" : {
-								"type" : "array",
-								"items" : {
-									"$ref" : "#/components/schemas/RequestModel"
-								}
-							}
-						}
-					},
-					"required" : true
-				},
-				"responses" : {
-					"201" : {
-						"description" : "",
-						"content" : {
-							"application/json" : {
-								"schema" : {
-									"$ref" : "#/components/schemas/ResponseModel"
-								}
-							}
-						}
-					}
-				}
-			}
 		}
 	},
 	"components" : {
 		"schemas" : {
-			"ErrorResponse" : {
-				"type" : "object",
-				"properties" : {
-					"id" : {
-						"type" : "string"
-					},
-					"text" : {
-						"type" : "string"
-					}
-				}
-			},
-			"RequestModel" : {
-				"type" : "object",
-				"properties" : {
-					"value" : {
-						"type" : "string"
-					}
-				}
-			},
 			"ResponseModel" : {
 				"type" : "object",
 				"properties" : {
 					"response" : {
+						"type" : "string"
+					}
+				}
+			},
+			"ServerPingResponse" : {
+				"type" : "object",
+				"properties" : {
+					"connectTime" : {
+						"type" : "integer",
+						"format" : "int64",
+						"nullable" : false
+					},
+					"protocolTime" : {
+						"type" : "integer",
+						"format" : "int64",
+						"nullable" : false
+					},
+					"rawPingResponse" : {
 						"type" : "string"
 					}
 				}

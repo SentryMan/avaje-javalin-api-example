@@ -9,11 +9,10 @@ import java.util.List;
 @Factory
 public class ServerFactory {
   @Bean
-  Javalin server(List<WebRoutes> routes, List<ServerCustomizer> customizers) {
+  Javalin server(List<WebRoutes> routes) {
 
     final var app = Javalin.create();
     app.routes(() -> routes.forEach(WebRoutes::registerRoutes));
-    customizers.forEach(c -> c.customize(app));
 
     return app;
   }
