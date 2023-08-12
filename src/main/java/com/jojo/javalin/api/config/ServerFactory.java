@@ -1,20 +1,17 @@
 package com.jojo.javalin.api.config;
 
-import io.avaje.http.api.WebRoutes;
+import java.util.List;
+
 import io.avaje.inject.Bean;
 import io.avaje.inject.Factory;
 import io.javalin.Javalin;
-import java.util.List;
+import io.javalin.plugin.Plugin;
 
 @Factory
 public class ServerFactory {
   @Bean
-  Javalin server(List<WebRoutes> routes, List<ServerCustomizer> customizers) {
+  Javalin server(List<Plugin> routes) {
 
-    final var app = Javalin.create();
-    app.routes(() -> routes.forEach(WebRoutes::registerRoutes));
-    customizers.forEach(c -> c.customize(app));
-
-    return app;
+    return Javalin.create(cfg -> routes.forEach(cfg.plugins::register));
   }
 }
