@@ -10,6 +10,7 @@ import io.avaje.http.api.MediaType;
 import io.avaje.http.api.OpenAPIResponse;
 import io.avaje.http.api.Post;
 import io.avaje.http.api.Produces;
+import io.avaje.http.api.Valid;
 import io.javalin.http.Context;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -18,6 +19,7 @@ import jakarta.inject.Inject;
 import java.io.InputStream;
 import java.util.List;
 
+@Valid
 @OpenAPIDefinition(
     info =
         @Info(
@@ -41,7 +43,7 @@ public class BasicController {
    */
   @Get("/get")
   @Produces(MediaType.IMAGE_PNG)
-  @OpenAPIResponse(responseCode = "200", type = byte[].class)
+  @OpenAPIResponse(responseCode = 200, type = byte[].class)
   InputStream ctxEndpoint(Context ctx) {
     return service.callDownStream();
   }
@@ -54,11 +56,8 @@ public class BasicController {
    */
   @Post("/post")
   @Tag(name = "tag1", description = "it's somethin")
-  @OpenAPIResponse(responseCode = "422", description = "Failed Validation")
-  @OpenAPIResponse(
-      responseCode = "500",
-      description = "Some other Error",
-      type = ErrorResponse.class)
+  @OpenAPIResponse(responseCode = 422, description = "Failed Validation")
+  @OpenAPIResponse(responseCode = 500, description = "Some other Error", type = ErrorResponse.class)
   ResponseModel testPost(RequestModel b) {
     return new ResponseModel("got " + b);
   }
