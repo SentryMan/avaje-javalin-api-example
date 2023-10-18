@@ -10,7 +10,6 @@ import io.avaje.http.api.MediaType;
 import io.avaje.http.api.OpenAPIResponse;
 import io.avaje.http.api.Post;
 import io.avaje.http.api.Produces;
-import io.avaje.http.api.Valid;
 import io.javalin.http.Context;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -19,7 +18,6 @@ import jakarta.inject.Inject;
 import java.io.InputStream;
 import java.util.List;
 
-@Valid
 @OpenAPIDefinition(
     info =
         @Info(

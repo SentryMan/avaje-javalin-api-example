@@ -45,7 +45,7 @@ class ProcessorTest {
             new PrintWriter(System.out),
             null,
             null,
-            List.of("--enable-preview", "--release=20"),
+            List.of("--enable-preview", "--release=21"),
             null,
             files);
     task.setProcessors(List.of(new JavalinProcessor(), new ClientProcessor(), new Processor()));
