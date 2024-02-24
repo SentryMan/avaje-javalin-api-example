@@ -13,7 +13,7 @@ public class JavalinAPI {
     try {
 
       BeanScope.builder().build().get(Javalin.class).start(Config.getInt("server.port", 8080));
-
+      System.out.println("Hmmm??");
     } catch (final Exception e) {
 
       log.error("Failed to start: ", e);

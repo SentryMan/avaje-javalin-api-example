@@ -2,24 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.6</version>
-		<relativePath /> <!--lookupparentfromrepository-->
-	</parent>
 	<groupId>com.jojo.javalin.api</groupId>
 	<artifactId>avaje-javalin</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>avaje-javalin-template</name>
+	<parent>
+		<groupId>org.avaje</groupId>
+		<artifactId>java11-oss</artifactId>
+		<version>4.0</version>
+	</parent>
+
 	<description>Demo project for Javalin</description>
 	<properties>
-		<java.version>21</java.version>
-		<avaje.inject.version>9.8</avaje.inject.version>
-		<avaje.jsonb.version>1.8</avaje.jsonb.version>
-		<avaje.config.version>3.9</avaje.config.version>
-		<avaje.http.version>2.0-RC11</avaje.http.version>
-		<javalin.version>5.6.3</javalin.version>
+		<maven.compiler.release>21</maven.compiler.release>
+		<avaje.inject.version>9.11</avaje.inject.version>
+		<avaje.jsonb.version>1.10</avaje.jsonb.version>
+		<avaje.config.version>3.11</avaje.config.version>
+		<avaje.http.version>2.2</avaje.http.version>
+		<javalin.version>6.1.1</javalin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -36,17 +36,11 @@
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
 			<version>7.2</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<scope>runtime</scope>
+			<version>1.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.avaje</groupId>
@@ -116,12 +110,6 @@
 			<version>${avaje.http.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.google.errorprone</groupId>
-			<artifactId>error_prone_core</artifactId>
-			<version>2.15.0</version>
-			<scope>provided</scope>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -137,18 +125,6 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<!-- Add Compiler args for loom and errorprone -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<compilerArgs>
-						<arg>--enable-preview</arg>
-						<arg>-XDcompilePolicy=simple</arg>
-						<arg>-Xplugin:ErrorProne</arg>
-					</compilerArgs>
-				</configuration>
 			</plugin>
 			<!-- Move openAPI to resources-->
 			<plugin>
@@ -166,57 +142,75 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.11</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.1.2</version>
 				<configuration>
-					<argLine>@{argLine} --enable-preview</argLine>
+					<useModulePath>false</useModulePath>
 				</configuration>
 			</plugin>
-
-			<!-- Create the Runnable Jar with dependencies -->
+			
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
+				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>copy-modules</id>
 						<phase>package</phase>
 						<goals>
-							<goal>shade</goal>
+							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<transformers combine.self="override">
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.jojo.javalin.api.JavalinAPI</mainClass>
-								</transformer>
-							</transformers>
-							<createDependencyReducedPom>false</createDependencyReducedPom>
-							<keepDependenciesWithProvidedScope>false</keepDependenciesWithProvidedScope>
+							<outputDirectory>${project.build.directory}/modules</outputDirectory>
+							<includeScope>runtime</includeScope>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${project.build.directory}/modules</outputDirectory>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>jlink</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.moditect</groupId>
+						<artifactId>moditect-maven-plugin</artifactId>
+						<version>1.0.0.Final</version>
+						<executions>
+							<execution>
+								<id>create-runtime-image</id>
+								<phase>package</phase>
+								<goals>
+									<goal>create-runtime-image</goal>
+								</goals>
+								<configuration>
+									<modulePath>
+										<path>${project.build.directory}/modules</path>
+									</modulePath>
+									<modules>
+										<module>avaje.javalin.example</module>
+									</modules>
+									<stripDebug>true</stripDebug>
+									<noManPages>true</noManPages>
+									<noHeaderFiles>true</noHeaderFiles>
+									<jarInclusionPolicy>NONE</jarInclusionPolicy>
+									<outputDirectory>
+										${project.build.directory}/jlink-image
+									</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
