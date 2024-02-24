@@ -19,7 +19,7 @@
 		<avaje.jsonb.version>1.10</avaje.jsonb.version>
 		<avaje.config.version>3.11</avaje.config.version>
 		<avaje.http.version>2.2</avaje.http.version>
-		<javalin.version>6.1.0</javalin.version>
+		<javalin.version>6.1.1</javalin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
-			<version>7.2</version>
+			<version>7.4</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -76,7 +76,7 @@
 		<dependency>
 			<groupId>com.github.tomakehurst</groupId>
 			<artifactId>wiremock-jre8-standalone</artifactId>
-			<version>2.35.0</version>
+			<version>2.35.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
