@@ -19,7 +19,7 @@
 		<avaje.jsonb.version>1.11</avaje.jsonb.version>
 		<avaje.config.version>3.14</avaje.config.version>
 		<avaje.http.version>2.5</avaje.http.version>
-		<javalin.version>6.1.4</javalin.version>
+		<javalin.version>6.1.6</javalin.version>
 	</properties>
 	<dependencies>
 		<dependency>
