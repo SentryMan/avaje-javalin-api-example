@@ -1,0 +1,41 @@
+
+name: EA Builds
+
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '39 1 * * 2,5'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        java_version: [EA]
+        os: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Java
+      uses: oracle-actions/setup-java@v1
+      with:
+        website: jdk.java.net
+        release: ${{ matrix.java_version }}
+    - name: Maven cache
+      uses: actions/cache@v4
+      env:
+        cache-name: maven-cache
+      with:
+        path:
+          ~/.m2
+        key: build-${{ env.cache-name }}
+    - name: Maven version
+      run: mvn --version
+    - name: Build with Maven
+      run: mvn clean verify package -Ptest
+
