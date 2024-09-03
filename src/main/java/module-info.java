@@ -1,6 +1,7 @@
 module avaje.javalin.example {
   requires io.avaje.inject;
   requires io.avaje.inject.aop;
+  requires jakarta.inject;
   requires io.avaje.http.client;
   requires io.avaje.config;
   requires io.javalin;
