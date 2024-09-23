@@ -16,7 +16,7 @@
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
 		<avaje.inject.version>10.4</avaje.inject.version>
-		<avaje.jsonb.version>2.1</avaje.jsonb.version>
+		<avaje.jsonb.version>2.2</avaje.jsonb.version>
 		<avaje.config.version>4.0</avaje.config.version>
 		<avaje.http.version>2.7</avaje.http.version>
 		<javalin.version>6.3.0</javalin.version>
@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>io.swagger.core.v3</groupId>
 			<artifactId>swagger-annotations</artifactId>
-			<version>2.2.23</version>
+			<version>2.2.24</version>
 		</dependency>
 		<dependency>
 			<groupId>io.javalin</groupId>
