@@ -15,8 +15,8 @@
 	<description>Demo project for Javalin</description>
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
-		<avaje.inject.version>11.2</avaje.inject.version>
-		<avaje.jsonb.version>3.0</avaje.jsonb.version>
+		<avaje.inject.version>11.3</avaje.inject.version>
+		<avaje.jsonb.version>3.1</avaje.jsonb.version>
 		<avaje.config.version>4.0</avaje.config.version>
 		<avaje.http.version>3.0</avaje.http.version>
 		<javalin.version>6.5.0</javalin.version>
