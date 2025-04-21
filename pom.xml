@@ -9,14 +9,14 @@
 	<parent>
 		<groupId>org.avaje</groupId>
 		<artifactId>java11-oss</artifactId>
-		<version>4.5</version>
+		<version>5.1</version>
 	</parent>
 
 	<description>Demo project for Javalin</description>
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
 		<avaje.inject.version>11.4</avaje.inject.version>
-		<avaje.jsonb.version>3.2</avaje.jsonb.version>
+		<avaje.jsonb.version>3.3</avaje.jsonb.version>
 		<avaje.config.version>4.0</avaje.config.version>
 		<avaje.http.version>3.2</avaje.http.version>
 		<javalin.version>6.6.0</javalin.version>
