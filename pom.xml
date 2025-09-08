@@ -16,7 +16,7 @@
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
 		<avaje.inject.version>11.6</avaje.inject.version>
-		<avaje.jsonb.version>3.6</avaje.jsonb.version>
+		<avaje.jsonb.version>3.7</avaje.jsonb.version>
 		<avaje.config.version>4.1</avaje.config.version>
 		<avaje.http.version>3.4</avaje.http.version>
 		<javalin.version>6.7.0</javalin.version>
