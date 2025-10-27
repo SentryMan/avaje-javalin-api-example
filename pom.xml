@@ -15,10 +15,10 @@
 	<description>Demo project for Javalin</description>
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
-		<avaje.inject.version>11.6</avaje.inject.version>
-		<avaje.jsonb.version>3.7</avaje.jsonb.version>
-		<avaje.config.version>4.1</avaje.config.version>
-		<avaje.http.version>3.4</avaje.http.version>
+		<avaje.inject.version>12.0</avaje.inject.version>
+		<avaje.jsonb.version>3.8</avaje.jsonb.version>
+		<avaje.config.version>4.2</avaje.config.version>
+		<avaje.http.version>3.5</avaje.http.version>
 		<javalin.version>6.7.0</javalin.version>
 	</properties>
 	<dependencies>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
-			<version>8.1</version>
+			<version>9.0</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
