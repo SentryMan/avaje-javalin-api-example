@@ -15,8 +15,8 @@
 	<description>Demo project for Javalin</description>
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
-		<avaje.inject.version>12.4</avaje.inject.version>
-		<avaje.jsonb.version>3.11</avaje.jsonb.version>
+		<avaje.inject.version>12.5</avaje.inject.version>
+		<avaje.jsonb.version>3.12</avaje.jsonb.version>
 		<avaje.config.version>5.1</avaje.config.version>
 		<avaje.http.version>3.8</avaje.http.version>
 		<javalin.version>7.1.0</javalin.version>
@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>io.swagger.core.v3</groupId>
 			<artifactId>swagger-annotations</artifactId>
-			<version>2.2.46</version>
+			<version>2.2.48</version>
 		</dependency>
 		<dependency>
 			<groupId>io.javalin</groupId>
